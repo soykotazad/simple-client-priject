@@ -9,7 +9,23 @@ function App() {
     const name = form.name.value; // Access form elements correctly
     const email = form.email.value; // Access form elements correctly
     const user = { name, email };
-    console.log(user);}
+    console.log(user);
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }, 
+      body: JSON.stringify(user)
+    })  
+    .then(res => res.json())
+    .then ( data => { console.log(data) ;
+    if (data.insertedID){
+      alert('users delete successfilly');
+  }
+      form.reset();
+    });
+
+      
+   
+  }
 
 
   return (
